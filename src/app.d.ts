@@ -10,4 +10,11 @@ declare namespace App {
 		email: string;
 		password: string;
 	};
+	type SignupForm = {
+		firstName: string;
+		middleName: string;
+		lastName: string;
+		email: string;
+		password: string;
+	};
 }
