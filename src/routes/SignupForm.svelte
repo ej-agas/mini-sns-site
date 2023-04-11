@@ -12,7 +12,8 @@
 	}
 </script>
 
-<form class="login-form flex flex-col" on:submit|preventDefault={login}>
+<form class="login-form flex flex-col card card-hover p-10" on:submit|preventDefault={login}>
+	<header class="text-2xl font-bold text-center">Sign Up</header>
 	<label class="label">
 		<span>First Name:</span>
 		<input class="input" type="text" bind:value={signupForm.firstName} />
@@ -33,7 +34,7 @@
 		<span>Password:</span>
 		<input class="input" type="password" bind:value={signupForm.password} />
 	</label>
-	<button type="submit" class="btn btn-sm variant-filled px-10 mt-4 text-2xl">Sign Up</button>
+	<button type="submit" class="btn btn-sm variant-filled px-10 py-4 mt-4">Sign Up</button>
 </form>
 
 <style>

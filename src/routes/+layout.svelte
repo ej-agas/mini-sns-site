@@ -8,13 +8,20 @@
 	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
 	import LoginForm from './LoginForm.svelte';
 
-	import { page } from '$app/stores';
+	import { Modal, modalStore } from '@skeletonlabs/skeleton';
+	import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
 
-	let onLoginPage = false;
-	$: {
-		onLoginPage = $page.route.id === '/login';
-	}
+	const loginComponent: ModalComponent = {
+		ref: LoginForm
+	};
+
+	const loginModal: ModalSettings = {
+		type: 'component',
+		component: loginComponent
+	};
 </script>
+
+<Modal />
 
 <!-- App Shell -->
 <AppShell>
@@ -25,11 +32,9 @@
 				<strong class="text-xl uppercase"><a href="/">Mini SNS</a></strong>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
-				{#if onLoginPage}
-					<a class="btn variant-filled" href="/">Home</a>
-				{:else}
-					<a class="btn variant-filled" href="/login">Login</a>
-				{/if}
+				<button class="btn variant-filled" on:click={() => modalStore.trigger(loginModal)}
+					>Login</button
+				>
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
