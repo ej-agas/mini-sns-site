@@ -17,6 +17,11 @@ declare namespace App {
 		email: string;
 		password: string;
 		gender: string;
-		birthdate: string;
+		birthdate: {
+			year: number;
+			month: number;
+			day: number;
+			toString: function (): string;
+		};
 	};
 }

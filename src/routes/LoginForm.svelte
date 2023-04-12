@@ -1,17 +1,30 @@
 <script lang="ts">
 	import { modalStore } from '@skeletonlabs/skeleton';
 	import SignupForm from './SignupForm.svelte';
-
-	// Silence warning of creating <LoginForm /> component with unknown prop 'parent'.
-	export let parent = undefined;
+	import APIBaseURL from '../api/APIBaseURL';
 
 	let loginForm: App.LoginForm = {
 		email: '',
 		password: ''
 	};
 
-	function login(): void {
-		console.log('loginForm', loginForm);
+	async function login() {
+		const response = await fetch(APIBaseURL() + '/api/v1/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(loginForm)
+		});
+
+		if (!response.ok) {
+			const error = await response.json();
+			console.error(error);
+			return;
+		}
+
+		const data = await response.json();
+		console.log(data);
 	}
 
 	function openModal(): void {

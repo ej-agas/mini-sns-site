@@ -6,11 +6,24 @@
 		middleName: '',
 		lastName: '',
 		email: '',
-		password: ''
+		password: '',
+		gender: '',
+		birthdate: {
+			year: 2021,
+			month: 1,
+			day: 1,
+			toString: () => {
+				return `${signupForm.birthdate.year}-${signupForm.birthdate.month}-${signupForm.birthdate.day}`;
+			}
+		}
 	};
 
+	$: {
+		console.log(signupForm);
+	}
+
 	function signup(): void {
-		console.log('signupForm', signupForm);
+		console.log(signupForm.birthdate.toString());
 	}
 </script>
 
@@ -40,7 +53,7 @@
 		</label>
 		<div class="label col-span-full">Birthday:</div>
 		<label class="label col-span-1">
-			<select class="select">
+			<select class="select" bind:value={signupForm.birthdate.month}>
 				<option value="1">Jan</option>
 				<option value="2">Feb</option>
 				<option value="3">Mar</option>
@@ -56,7 +69,7 @@
 			</select>
 		</label>
 		<label class="label col-span-1">
-			<select class="select">
+			<select class="select" bind:value={signupForm.birthdate.day}>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -91,7 +104,7 @@
 			</select>
 		</label>
 		<label class="label col-span-1">
-			<select class="select">
+			<select class="select" bind:value={signupForm.birthdate.year}>
 				{#each Array.from({ length: 124 }, (_, i) => 2023 - i) as year}
 					<option value={year}>{year}</option>
 				{/each}
