@@ -1,4 +1,5 @@
 <script lang="ts">
+	import LoginForm from './LoginForm.svelte';
 	import SignupForm from './SignupForm.svelte';
 </script>
 
@@ -10,6 +11,6 @@
 		</p>
 	</div>
 	<div class="basis-1/2">
-		<SignupForm />
+		<LoginForm />
 	</div>
 </div>
