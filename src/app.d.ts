@@ -24,4 +24,21 @@ declare namespace App {
 			toString: function (): string;
 		};
 	};
+
+	type ValidationErrors = {
+		[key: string]: string;
+	}
+
+	type UserProfile = {
+		fullName: string;
+		bio: string;
+		email: string;
+		isVerified: boolean;
+		verifiedDate: string;
+		joinDate: string,
+	}
+
+	type GlobalStore = {
+		isLoggedIn: boolean;
+	}
 }

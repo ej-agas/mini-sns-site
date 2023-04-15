@@ -1,30 +1,56 @@
 <script lang="ts">
 	import { modalStore } from '@skeletonlabs/skeleton';
 	import SignupForm from './SignupForm.svelte';
-	import APIBaseURL from '../api/APIBaseURL';
+	import { goto } from '$app/navigation';
+	import Login from '../api/Login';
+	import globalStore from '$stores/Global';
 
 	let loginForm: App.LoginForm = {
 		email: '',
 		password: ''
 	};
 
-	async function login() {
-		const response = await fetch(APIBaseURL() + '/api/v1/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(loginForm)
-		});
+	let errors: App.ValidationErrors = {
+		email: '',
+		password: '',
+		message: ''
+	};
+
+	function clearErrors() {
+		errors = {
+			email: '',
+			password: '',
+			message: ''
+		};
+	}
+
+	async function handleLogin() {
+		clearErrors();
+
+		const response = await Login(loginForm);
 
 		if (!response.ok) {
 			const error = await response.json();
-			console.error(error);
-			return;
+
+			if (error.errors) {
+				const fields = Object.keys(error.errors);
+				fields.forEach((field) => {
+					errors[field] = error.errors[field][0];
+				});
+
+				return;
+			}
+
+			if (error.message) {
+				errors.message = error.message;
+				return;
+			}
 		}
 
 		const data = await response.json();
-		console.log(data);
+		localStorage.setItem('token', data.token);
+
+		goto('/home');
 	}
 
 	function openModal(): void {
@@ -37,24 +63,47 @@
 	}
 </script>
 
-{#if false}<slot />{/if}
-
 <div class="modal-example-form card p-8 w-modal shadow-xl space-y-4">
 	<form
 		class="modal-form border border-surface-500 p-8 space-y-4 rounded-container-token flex flex-col"
-		on:submit|preventDefault={login}
+		on:submit|preventDefault={handleLogin}
 	>
 		<label class="label">
 			<span class="">Email</span>
-			<input class="input p-4" type="text" bind:value={loginForm.email} />
+			<input
+				class="input p-4"
+				class:input-error={errors.email}
+				type="text"
+				bind:value={loginForm.email}
+			/>
+			{#if errors.email}
+				<p class="err-text">{errors.email}</p>
+			{/if}
 		</label>
 		<label class="label">
 			<span class="">Password</span>
-			<input class="input p-4" type="password" bind:value={loginForm.password} />
+			<input
+				class="input p-4"
+				class:input-error={errors.password}
+				type="password"
+				bind:value={loginForm.password}
+			/>
+			{#if errors.password}
+				<p class="err-text">{errors.password}</p>
+			{/if}
 		</label>
-		<button class="btn variant-filled p-4" on:click={login}>Log in</button>
+		<button class="btn variant-filled p-4">Log in</button>
+		{#if errors.message}
+			<p class="err-text bg-error-50 p-4 rounded-md">{errors.message}</p>
+		{/if}
 	</form>
-	<footer class="modal-footer flex justify-end space-x-2">
-		<button class="btn variant-filled p-4" on:click={openModal}>Create Account</button>
+	<footer class="modal-footer">
+		<button class="btn variant-filled p-4 w-full" on:click={openModal}>Create Account</button>
 	</footer>
 </div>
+
+<style>
+	.err-text {
+		color: rgb(var(--color-error-500));
+	}
+</style>
