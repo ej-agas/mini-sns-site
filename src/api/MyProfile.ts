@@ -1,13 +1,24 @@
 import APIBaseURL from './APIBaseURL';
 
-async function MyProfile(): Promise<Response> {
-	return await fetch(APIBaseURL() + '/api/v1/login', {
+async function MyProfile(): Promise<App.UserProfile> {
+	const response = await fetch(APIBaseURL() + '/api/v1/my-profile', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: 'Bearer ' + localStorage.getItem('token')
 		}
 	});
+
+	const data = await response.json();
+
+	return {
+		fullName: data.full_name,
+		bio: data.bio,
+		email: data.email,
+		isVerified: data.is_verified,
+		verifiedDate: data.verified_date,
+		joinDate: data.join_date
+	};
 }
 
 export default MyProfile;
