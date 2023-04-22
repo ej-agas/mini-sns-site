@@ -5,8 +5,6 @@
 	import { AppShell } from '@skeletonlabs/skeleton';
 
 	import { goto } from '$app/navigation';
-	import { onMount } from 'svelte';
-	import MyProfile from '../../api/MyProfile';
 	import LeftSidebar from './LeftSidebar.svelte';
 	import RightSidebar from './RightSidebar.svelte';
 	import PageHeader from './PageHeader.svelte';
