@@ -15,17 +15,15 @@
 	}
 </script>
 
-<div class="container mx-auto px-4">
-	<AppShell>
-		<svelte:fragment slot="sidebarLeft">
-			<LeftSidebar />
-		</svelte:fragment>
-		<svelte:fragment slot="sidebarRight">
-			<RightSidebar />
-		</svelte:fragment>
-		<svelte:fragment slot="pageHeader">
-			<PageHeader />
-		</svelte:fragment>
-		<Feed />
-	</AppShell>
-</div>
+<AppShell>
+	<svelte:fragment slot="sidebarLeft">
+		<LeftSidebar />
+	</svelte:fragment>
+	<svelte:fragment slot="sidebarRight">
+		<RightSidebar />
+	</svelte:fragment>
+	<svelte:fragment slot="pageHeader">
+		<PageHeader />
+	</svelte:fragment>
+	<Feed />
+</AppShell>
