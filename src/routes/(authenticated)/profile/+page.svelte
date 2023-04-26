@@ -1,1 +1,4 @@
-<h3>profile</h3>
+<script lang="ts">
+</script>
+
+<h3>Profile</h3>
