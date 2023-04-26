@@ -7,11 +7,12 @@
 	import { goto } from '$app/navigation';
 	import LeftSidebar from './LeftSidebar.svelte';
 	import RightSidebar from './RightSidebar.svelte';
-	import PageHeader from './PageHeader.svelte';
-	import Feed from './Feed.svelte';
+	import { browser } from '$app/environment';
 
-	if (!localStorage.getItem('token')) {
-		goto('/');
+	if (browser) {
+		if (!localStorage.getItem('token')) {
+			goto('/');
+		}
 	}
 </script>
 
@@ -22,8 +23,5 @@
 	<svelte:fragment slot="sidebarRight">
 		<RightSidebar />
 	</svelte:fragment>
-	<svelte:fragment slot="pageHeader">
-		<PageHeader />
-	</svelte:fragment>
-	<Feed />
+	<slot />
 </AppShell>

@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import MyProfile from '../../api/MyProfile';
 	import { Avatar } from '@skeletonlabs/skeleton';
+	import { page } from '$app/stores';
 
 	let profile: App.UserProfile | undefined = undefined;
 
@@ -30,14 +31,24 @@
 		</div>
 	</div>
 	<div class="p-4 m-8 bg-surface-600 rounded-xl grid justify-items-stretch">
-		<button class="text-center bg-primary-500 rounded-md text-surface-500 text-2xl font-bold py-3">
+		<a
+			href="/home"
+			class={'btn text-center rounded-md text-2xl font-bold py-3 mb-2 ' +
+				($page.url.pathname.startsWith('/home')
+					? 'bg-primary-500 text-surface-500'
+					: 'bg-surface-500 text-primary-500')}
+		>
 			Home
-		</button>
-		<button
-			class="text-center bg-backround-500 rounded-md text-primary-500 text-2xl font-bold py-3"
+		</a>
+		<a
+			href="/profile"
+			class={'btn text-center rounded-md text-2xl font-bold py-3 mt-2 ' +
+				($page.url.pathname.startsWith('/profile')
+					? 'bg-primary-500 text-surface-500'
+					: 'bg-surface-500 text-primary-500')}
 		>
 			Profile
-		</button>
+		</a>
 	</div>
 	<div class="p-4 m-8 bg-surface-600 rounded-xl grid justify-items-stretch">
 		<button class="text-center bg-primary-500 rounded-md text-surface-500 text-2xl font-bold py-3">
