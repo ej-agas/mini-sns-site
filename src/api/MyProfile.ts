@@ -13,6 +13,9 @@ async function MyProfile(): Promise<App.UserProfile> {
 
 	return {
 		fullName: data.full_name,
+		firstName: data.first_name,
+		middleName: data.middle_name,
+		lastName: data.last_name,
 		bio: data.bio,
 		email: data.email,
 		isVerified: data.is_verified,

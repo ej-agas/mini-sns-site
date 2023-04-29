@@ -10,6 +10,7 @@ declare namespace App {
 		email: string;
 		password: string;
 	};
+
 	type SignupForm = {
 		firstName: string;
 		middleName: string;
@@ -31,11 +32,21 @@ declare namespace App {
 
 	type UserProfile = {
 		fullName: string;
+		firstName: string;
+		middleName: string;
+		lastName: string;
 		bio: string;
 		email: string;
 		isVerified: boolean;
 		verifiedDate: string;
 		joinDate: string,
+	}
+
+	type UserProfileForm = {
+		firstName: string;
+		middleName: string;
+		lastName: string;
+		bio: string;
 	}
 
 	type GlobalStore = {

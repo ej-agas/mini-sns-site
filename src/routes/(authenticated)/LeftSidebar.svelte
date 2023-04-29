@@ -3,18 +3,17 @@
 	import MyProfile from '../../api/MyProfile';
 	import { Avatar } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
-
-	let profile: App.UserProfile | undefined = undefined;
+	import userProfile from '$stores/UserProfile';
 
 	onMount(async () => {
-		profile = await MyProfile();
+		$userProfile = await MyProfile();
 	});
 </script>
 
 <div class="sidebar-left">
 	<div class="p-4 m-8 bg-surface-600 rounded-xl grid justify-items-center">
 		<Avatar src="https://i.pravatar.cc/?img=48" width="w-32" rounded="rounded-full" />
-		<h3 class="text-md text-primary-500 py-4">{profile?.fullName}</h3>
+		<h3 class="text-md text-primary-500 py-4">{$userProfile.fullName}</h3>
 		<div class="grid grid-cols-3">
 			<div class="text-center">
 				<h3 class="text-md text-primary-500">42</h3>
