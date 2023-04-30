@@ -1,94 +1,56 @@
 <script lang="ts">
 	import userProfile from '$stores/UserProfile';
-	import { superForm } from 'sveltekit-superforms/client';
+	import { Avatar, modalStore, toastStore } from '@skeletonlabs/skeleton';
+	import type { ModalComponent, ToastSettings } from '@skeletonlabs/skeleton';
+	import dayjs from 'dayjs';
+	import advancedFormat from 'dayjs/plugin/advancedFormat';
+	import timezone from 'dayjs/plugin/timezone';
+	import ProfileForm from './ProfileForm.svelte';
 
-	let userProfileForm: App.UserProfileForm = {
-		firstName: '',
-		middleName: '',
-		lastName: '',
-		bio: ''
-	};
+	dayjs.extend(timezone);
+	dayjs.extend(advancedFormat);
 
-	const { form, errors, enhance, constraints } = superForm(userProfileForm, {
-		SPA: true,
-		taintedMessage: 'Are you sure you want to leave this page? You have unsaved changes.',
-		validators: {
-			firstName: (value) => {
-				if (value.length <= 1) {
-					return 'First name is required.';
-				}
-			},
-			lastName: (value) => {
-				if (value.length <= 1) {
-					return 'Last name is required.';
-				}
-			},
-			bio: (value) => {
-				if (value.length > 50) {
-					return 'Bio must be less than 50 characters.';
-				}
+	function openProfileModal(): void {
+		modalStore.trigger({
+			type: 'component',
+			component: {
+				ref: ProfileForm
 			}
-		},
-		onUpdate({ form }) {
-			if (form.valid === true) {
-				handleSubmit();
-			}
-		}
-	});
-
-	$form = $userProfile;
-
-	async function handleSubmit() {
-		console.log(userProfileForm);
+		});
 	}
 </script>
 
-<form class="p-4 m-4 bg-surface-600 rounded-xl grid grid-cols-3 gap-4" method="POST" use:enhance>
-	<label class="label">
-		<span>First Name</span>
-		<input
-			class="input"
-			class:input-error={$errors.firstName}
-			type="text"
-			bind:value={$form.firstName}
-		/>
-		{#if $errors.firstName}
-			<span class="badge variant-filled-error">{$errors.firstName}</span>
-		{/if}
-	</label>
-	<label class="label">
-		<span>Middle Name</span>
-		<input
-			class="input"
-			class:input-error={$errors.middleName}
-			type="text"
-			bind:value={$form.middleName}
-		/>
-		{#if $errors.middleName}
-			<span class="badge variant-filled-error">{$errors.middleName}</span>
-		{/if}
-	</label>
-	<label class="label">
-		<span>Last Name</span>
-		<input
-			class="input"
-			class:input-error={$errors.lastName}
-			type="text"
-			bind:value={$form.lastName}
-		/>
-		{#if $errors.lastName}
-			<span class="badge variant-filled-error">{$errors.lastName}</span>
-		{/if}
-	</label>
-	<label class="label col-span-3">
-		<span>Bio</span>
-		<input class="textarea" class:input-error={$errors.bio} type="text" bind:value={$form.bio} />
-		{#if $errors.bio}
-			<span class="badge variant-filled-error">{$errors.bio}</span>
-		{/if}
-	</label>
-	<button class="btn variant-filled p-2 float-right">Update</button>
-</form>
+<div class="p-4 m-4 bg-surface-600 rounded-xl grid grid-cols-1 sm:grid-cols-2 gap-4">
+	<div class="rounded-xl card p-4 grid justify-items-center">
+		<Avatar src="https://i.pravatar.cc/?img=48" width="w-32" rounded="rounded" />
+		<h1>{$userProfile.fullName}</h1>
+		<h3>{$userProfile.bio}</h3>
+	</div>
+	<div class="rounded-xl card p-4">
+		<div class="grid grid-cols-1">
+			<h4>First Name: {$userProfile.firstName}</h4>
+			<h4>Middle Name: {$userProfile.middleName}</h4>
+			<h4>Last Name: {$userProfile.lastName}</h4>
+			<h4>Email: {$userProfile.email}</h4>
+			<h4>Join Date: {dayjs($userProfile.joinDate).format('MMMM DD, YYYY h:mm A z')}</h4>
+			<h4>
+				Is Verified: <span
+					class={'chip ' +
+						($userProfile.isVerified ? 'variant-filled-success' : 'variant-chip-warning')}
+					>{$userProfile.isVerified ? 'Verified' : 'Unverified'}</span
+				>
+			</h4>
+			{#if $userProfile.isVerified}
+				<h4>
+					Verified Date: {dayjs($userProfile.verifiedDate).format('MMMM DD, YYYY h:mm A z')}
+				</h4>
+			{/if}
+		</div>
 
-<style>
-</style>
+		<button
+			type="button"
+			class="btn variant-filled mt-4 float float-right"
+			on:click={openProfileModal}>Update</button
+		>
+	</div>
+</div>

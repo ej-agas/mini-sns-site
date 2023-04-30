@@ -4,7 +4,6 @@
 	import { goto } from '$app/navigation';
 	import Login from '../api/Login';
 	import { superForm } from 'sveltekit-superforms/client';
-	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
 	let loginForm: App.LoginForm = {
 		email: '',
@@ -69,8 +68,6 @@
 		});
 	}
 </script>
-
-<SuperDebug data={$form} />
 
 <div class="modal-example-form card p-8 w-modal shadow-xl space-y-4">
 	<form

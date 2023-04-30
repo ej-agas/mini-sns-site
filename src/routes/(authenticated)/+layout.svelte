@@ -2,7 +2,7 @@
 	import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
 	import '@skeletonlabs/skeleton/styles/all.css';
 	import '../../app.postcss';
-	import { AppShell } from '@skeletonlabs/skeleton';
+	import { AppShell, Modal } from '@skeletonlabs/skeleton';
 
 	import { goto } from '$app/navigation';
 	import LeftSidebar from './LeftSidebar.svelte';
@@ -15,6 +15,8 @@
 		}
 	}
 </script>
+
+<Modal />
 
 <AppShell>
 	<svelte:fragment slot="sidebarLeft">
