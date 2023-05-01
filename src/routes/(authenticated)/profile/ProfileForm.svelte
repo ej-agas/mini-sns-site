@@ -1,6 +1,8 @@
 <script lang="ts">
 	import userProfile from '$stores/UserProfile';
 	import { superForm } from 'sveltekit-superforms/client';
+	import UpdateMyProfile from '../../../api/UpdateMyProfile';
+	import { invalidateAll } from '$app/navigation';
 
 	let userProfileForm: App.UserProfileForm = {
 		firstName: '',
@@ -44,7 +46,15 @@
 	$form = $userProfile;
 
 	async function handleSubmit() {
-		console.log(userProfileForm);
+		const res = await UpdateMyProfile({
+			firstName: $form.firstName,
+			middleName: $form.middleName,
+			lastName: $form.lastName,
+			bio: $form.bio
+		});
+
+		console.log(res);
+		location.reload();
 	}
 </script>
 
