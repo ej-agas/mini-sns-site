@@ -5,9 +5,9 @@
 	import { invalidateAll } from '$app/navigation';
 
 	let userProfileForm: App.UserProfileForm = {
-		firstName: '',
-		middleName: '',
-		lastName: '',
+		first_name: '',
+		middle_name: '',
+		last_name: '',
 		bio: ''
 	};
 
@@ -46,14 +46,13 @@
 	$form = $userProfile;
 
 	async function handleSubmit() {
-		const res = await UpdateMyProfile({
-			firstName: $form.firstName,
-			middleName: $form.middleName,
-			lastName: $form.lastName,
+		await UpdateMyProfile({
+			first_name: $form.firstName,
+			middle_name: $form.middleName,
+			last_name: $form.lastName,
 			bio: $form.bio
 		});
 
-		console.log(res);
 		location.reload();
 	}
 </script>

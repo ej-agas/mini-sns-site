@@ -43,9 +43,9 @@ declare namespace App {
 	}
 
 	type UserProfileForm = {
-		firstName: string;
-		middleName: string;
-		lastName: string;
+		first_name: string;
+		middle_name: string;
+		last_name: string;
 		bio: string;
 	}
 
