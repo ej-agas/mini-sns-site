@@ -11,6 +11,11 @@ declare namespace App {
 		password: string;
 	};
 
+	type PostForm = {
+		title: string;
+		body: string;
+	}
+
 	type SignupForm = {
 		firstName: string;
 		middleName: string;

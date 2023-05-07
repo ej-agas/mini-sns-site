@@ -51,6 +51,7 @@
 
 			$errors.message = ['An unknown error occurred. check the logs for details.'];
 			console.error(errJSON);
+			return;
 		}
 
 		const data = await response.json();
