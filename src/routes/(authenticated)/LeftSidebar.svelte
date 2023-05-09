@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import MyProfile from '../../api/MyProfile';
+	import MyProfile from '$api/MyProfile';
 	import { Avatar } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
 	import userProfile from '$stores/UserProfile';

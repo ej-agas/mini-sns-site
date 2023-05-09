@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms/client';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
+	import CreatePost from '$api/CreatePost';
+	import feed from '$stores/FeedStore';
+	import Posts from '$api/Posts';
 
 	let postForm: App.PostForm = {
 		title: '',
@@ -29,14 +32,40 @@
 		}
 	});
 
-	function handleSubmit() {
-		console.log($form.title, $form.body);
+	async function handleSubmit() {
+		const response = await CreatePost({
+			title: $form.title,
+			body: $form.body
+		});
+
+		if (!response.ok) {
+			const errJSON = await response.json();
+
+			if (errJSON.message) {
+				$errors.message = errJSON.message;
+				return;
+			}
+
+			if (errJSON.errors) {
+				const fields = Object.keys(errJSON.errors);
+				fields.forEach((field) => {
+					$errors[field] = errJSON.errors[field][0];
+				});
+				return;
+			}
+
+			$errors.message = ['An unknown error occurred. check the logs for details.'];
+			console.error(errJSON);
+			return;
+		}
+		console.log(response.json());
+		$feed = await Posts();
 	}
 </script>
 
 <SuperDebug data={$form} />
 
-<form class="p-4 m-4 bg-surface-600 rounded-xl grid" use:enhance>
+<form class="p-4 m-4 bg-surface-600 rounded-xl grid" method="POST" use:enhance>
 	<label class="label">
 		<span>Title</span>
 		<input

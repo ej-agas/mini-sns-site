@@ -1,15 +1,15 @@
 <script lang="ts">
 	import dayjs from 'dayjs';
 	import { onMount } from 'svelte';
-	import Posts from '../../api/Posts';
+	import Posts from '$api/Posts';
 	import Spinner from '$lib/Spinner.svelte';
 	import { Avatar } from '@skeletonlabs/skeleton';
+	import feed from '$stores/FeedStore';
 
-	let posts: App.Post[] = [];
 	let isLoading: boolean = true;
 
 	onMount(async () => {
-		posts = await Posts();
+		$feed = await Posts();
 		isLoading = false;
 	});
 </script>
@@ -22,7 +22,7 @@
 			</div>
 		</div>
 	{:else}
-		{#each posts as post}
+		{#each $feed as post}
 			<div class="p-4 m-4 bg-surface-600 rounded-xl grid">
 				<div class="flex flex-col">
 					<Avatar src="https://i.pravatar.cc/?img=48" width="w-10" rounded="rounded-full" />

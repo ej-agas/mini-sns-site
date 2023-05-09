@@ -2,7 +2,6 @@
 	import userProfile from '$stores/UserProfile';
 	import { superForm } from 'sveltekit-superforms/client';
 	import UpdateMyProfile from '../../../api/UpdateMyProfile';
-	import { invalidateAll } from '$app/navigation';
 
 	let userProfileForm: App.UserProfileForm = {
 		first_name: '',

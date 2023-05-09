@@ -1,7 +1,6 @@
 <script lang="ts">
 	import userProfile from '$stores/UserProfile';
-	import { Avatar, modalStore, toastStore } from '@skeletonlabs/skeleton';
-	import type { ModalComponent, ToastSettings } from '@skeletonlabs/skeleton';
+	import { Avatar, modalStore } from '@skeletonlabs/skeleton';
 	import dayjs from 'dayjs';
 	import advancedFormat from 'dayjs/plugin/advancedFormat';
 	import timezone from 'dayjs/plugin/timezone';
