@@ -63,8 +63,6 @@
 	}
 </script>
 
-<SuperDebug data={$form} />
-
 <form class="p-4 m-4 bg-surface-600 rounded-xl grid" method="POST" use:enhance>
 	<label class="label">
 		<span>Title</span>
