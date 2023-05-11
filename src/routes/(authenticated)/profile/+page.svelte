@@ -5,6 +5,7 @@
 	import advancedFormat from 'dayjs/plugin/advancedFormat';
 	import timezone from 'dayjs/plugin/timezone';
 	import ProfileForm from './ProfileForm.svelte';
+	import { fade } from 'svelte/transition';
 
 	dayjs.extend(timezone);
 	dayjs.extend(advancedFormat);
