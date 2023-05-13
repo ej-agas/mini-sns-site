@@ -1,16 +1,16 @@
 <script lang="ts">
 	import dayjs from 'dayjs';
 	import { onMount } from 'svelte';
-	import Posts from '$api/Posts';
 	import Spinner from '$lib/Spinner.svelte';
 	import { Avatar } from '@skeletonlabs/skeleton';
 	import feed from '$stores/FeedStore';
 	import { fade } from 'svelte/transition';
+	import Feed from '$api/Feed';
 
 	let isLoading: boolean = true;
 
 	onMount(async () => {
-		$feed = await Posts();
+		$feed = await Feed();
 		isLoading = false;
 	});
 </script>

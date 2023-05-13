@@ -10,7 +10,7 @@
 	});
 </script>
 
-<div class="sidebar-left">
+<div class="sidebar-left hidden lg:block">
 	<div class="p-4 m-8 bg-surface-600 rounded-xl grid justify-items-center">
 		<Avatar src="https://i.pravatar.cc/?img=48" width="w-32" rounded="rounded-full" />
 		<h3 class="text-md text-primary-500 py-4">{$userProfile.fullName}</h3>

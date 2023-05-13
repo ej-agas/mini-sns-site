@@ -1,7 +1,7 @@
 import APIBaseURL from './APIBaseURL';
 
-async function Posts(): Promise<App.Post[]> {
-	const response = await fetch(APIBaseURL() + '/api/v1/posts', {
+async function Feed(): Promise<App.Post[]> {
+	const response = await fetch(APIBaseURL() + '/api/v1/feed', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
@@ -25,4 +25,4 @@ async function Posts(): Promise<App.Post[]> {
 		.reverse();
 }
 
-export default Posts;
+export default Feed;

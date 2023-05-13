@@ -2,7 +2,7 @@
 	import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
 	import '@skeletonlabs/skeleton/styles/all.css';
 	import '../../app.postcss';
-	import { AppShell, Modal } from '@skeletonlabs/skeleton';
+	import { AppBar, AppShell, Modal } from '@skeletonlabs/skeleton';
 
 	import { goto } from '$app/navigation';
 	import LeftSidebar from './LeftSidebar.svelte';
@@ -19,6 +19,11 @@
 <Modal />
 
 <AppShell>
+	<svelte:fragment slot="header">
+		<div class="hidden xl:hidden sm:block">
+			<h3>foo</h3>
+		</div>
+	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">
 		<LeftSidebar />
 	</svelte:fragment>

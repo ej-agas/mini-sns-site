@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms/client';
-	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	import CreatePost from '$api/CreatePost';
 	import feed from '$stores/FeedStore';
-	import Posts from '$api/Posts';
+	import Feed from '$api/Feed';
 
 	let postForm: App.PostForm = {
 		title: '',
@@ -58,8 +57,8 @@
 			console.error(errJSON);
 			return;
 		}
-		console.log(response.json());
-		$feed = await Posts();
+
+		$feed = await Feed();
 	}
 </script>
 

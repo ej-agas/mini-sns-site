@@ -2,7 +2,7 @@
 	import { Avatar } from '@skeletonlabs/skeleton';
 </script>
 
-<div class="sidebar-right">
+<div class="sidebar-right hidden lg:block">
 	<div class="p-4 m-8 bg-surface-600 rounded-xl grid justify-items-center card-hover">
 		<input class="input" type="text" placeholder="Search:" />
 	</div>
