@@ -3,8 +3,8 @@
 </script>
 
 <div class="sidebar-right hidden lg:block">
-	<div class="p-4 m-8 bg-surface-600 rounded-xl grid justify-items-center card-hover">
-		<input class="input" type="text" placeholder="Search:" />
+	<div class="p-4 m-8 bg-surface-600 rounded-xl grid grid-cols-1 card-hover">
+		<button type="button" class="btn variant-filled grid col-span-1">Search</button>
 	</div>
 	<div class="p-2 m-8 bg-surface-600 rounded-xl grid justify-items-center">
 		<h3>Suggestions:</h3>
