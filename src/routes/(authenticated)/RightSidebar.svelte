@@ -1,10 +1,27 @@
 <script lang="ts">
-	import { Avatar } from '@skeletonlabs/skeleton';
+	import { Avatar, modalStore } from '@skeletonlabs/skeleton';
+	import SearchForm from './SearchForm.svelte';
+
+	function openSearchForm(): void {
+		modalStore.trigger({
+			type: 'component',
+			component: {
+				ref: SearchForm
+			}
+		});
+	}
 </script>
 
 <div class="sidebar-right hidden lg:block">
-	<div class="p-4 m-8 bg-surface-600 rounded-xl grid grid-cols-1 card-hover">
-		<button type="button" class="btn variant-filled grid col-span-1">Search</button>
+	<div class="p-4 m-8 bg-surface-600 rounded-xl grid grid-cols-1">
+		<button
+			type="button"
+			class="btn p-2 px-4 space-x-4 variant-soft hover:variant-soft-primary"
+			on:click={openSearchForm}
+		>
+			<i class="fas fa-search" />
+			<span class="hidden md:inline-block badge variant-soft text-lg">Search</span>
+		</button>
 	</div>
 	<div class="p-2 m-8 bg-surface-600 rounded-xl grid justify-items-center">
 		<h3>Suggestions:</h3>
