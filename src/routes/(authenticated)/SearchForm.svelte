@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { Avatar } from '@skeletonlabs/skeleton';
+
 	let searchQuery: string = '';
 	let searchResults: [] = [];
 	let debounceTimeout: number = 0;
@@ -37,4 +39,21 @@
 			on:input={performSearch}
 		/>
 	</header>
+	<div class="modal-search-results overflow-x-auto max-h-[480px] hide-scrollbar">
+		<nav class="list-nav">
+			<ul>
+				<li>
+					<div class="grid grid-cols-[0fr,2fr] gap-2 p-4">
+						<div>
+							<Avatar src="https://i.pravatar.cc/?img=48" width="w-16" rounded="rounded-full" />
+						</div>
+						<div class="items-center grid grid-rows-2">
+							<p class="text-sm font-bold">John Doe</p>
+							<p class="text-sm font-bold">@jdoe123</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</div>
 </div>
