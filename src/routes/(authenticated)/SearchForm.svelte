@@ -1,11 +1,15 @@
 <script lang="ts">
+	import SearchUsers from '$api/SearchUsers';
 	import { Avatar } from '@skeletonlabs/skeleton';
 
 	let searchQuery: string = '';
-	let searchResults: [] = [];
+	let searchResults: App.UserProfile[] = [];
 	let debounceTimeout: number = 0;
 
 	async function performSearch() {
+		if (searchQuery.length < 2) {
+			return;
+		}
 		// Perform your API search request here
 		// You can use fetch or any library of your choice
 		// For simplicity, let's simulate an API call with a setTimeout
@@ -16,12 +20,9 @@
 		// Set a new timeout for 300 milliseconds
 		debounceTimeout = setTimeout(async () => {
 			// Make the API call with the searchQuery
-			// const response = await fetch(`https://api.example.com/search?query=${searchQuery}`);
-			// const data = await response.json();
+			searchResults = await SearchUsers(searchQuery);
 
-			// Update searchResults with the API response
-			// searchResults = data.results;
-			console.log(searchQuery);
+			console.log(searchResults);
 		}, 300);
 	}
 </script>
@@ -42,17 +43,19 @@
 	<div class="modal-search-results overflow-x-auto max-h-[480px] hide-scrollbar">
 		<nav class="list-nav">
 			<ul>
-				<li>
-					<div class="grid grid-cols-[0fr,2fr] gap-2 p-4">
-						<div>
-							<Avatar src="https://i.pravatar.cc/?img=48" width="w-16" rounded="rounded-full" />
+				{#each searchResults as user}
+					<li>
+						<div class="grid grid-cols-[0fr,2fr] gap-2 p-4">
+							<div>
+								<Avatar src="https://i.pravatar.cc/?img=48" width="w-16" rounded="rounded-full" />
+							</div>
+							<div class="items-center grid grid-rows-2">
+								<h3 class="font-bold">{user.firstName} {user.middleName ?? ''} {user.lastName}</h3>
+								<p class="text-sm font-bold">@{user.userName}</p>
+							</div>
 						</div>
-						<div class="items-center grid grid-rows-2">
-							<p class="text-sm font-bold">John Doe</p>
-							<p class="text-sm font-bold">@jdoe123</p>
-						</div>
-					</div>
-				</li>
+					</li>
+				{/each}
 			</ul>
 		</nav>
 	</div>

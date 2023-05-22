@@ -20,7 +20,9 @@ async function MyProfile(): Promise<App.UserProfile> {
 		email: data.email,
 		isVerified: data.is_verified,
 		verifiedDate: data.verified_date,
-		joinDate: data.join_date
+		joinDate: data.join_date,
+		userName: data.username,
+		picture: data.picture
 	};
 }
 

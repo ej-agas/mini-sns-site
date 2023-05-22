@@ -45,6 +45,8 @@ declare namespace App {
 		isVerified: boolean;
 		verifiedDate: string;
 		joinDate: string,
+		userName: string;
+		picture: string;
 	}
 
 	type UserProfileForm = {
