@@ -45,15 +45,24 @@
 			<ul>
 				{#each searchResults as user}
 					<li>
-						<div class="grid grid-cols-[0fr,2fr] gap-2 p-4">
-							<div>
-								<Avatar src="https://i.pravatar.cc/?img=48" width="w-16" rounded="rounded-full" />
+						<a
+							class="!rounded-none justify-between hover:variant-soft focus:!variant-filled-primary outline-0"
+							href="/profiles/{user.userName ?? user.id}"
+						>
+							<div class="grid grid-cols-[0fr,2fr] gap-2 p-4">
+								<div>
+									<Avatar src="https://i.pravatar.cc/?img=48" width="w-16" rounded="rounded-full" />
+								</div>
+								<div class="items-center grid grid-rows-2">
+									<h3 class="font-bold">
+										{user.firstName}
+										{user.middleName ?? ''}
+										{user.lastName}
+									</h3>
+									<p class="text-sm font-bold">@{user.userName}</p>
+								</div>
 							</div>
-							<div class="items-center grid grid-rows-2">
-								<h3 class="font-bold">{user.firstName} {user.middleName ?? ''} {user.lastName}</h3>
-								<p class="text-sm font-bold">@{user.userName}</p>
-							</div>
-						</div>
+						</a>
 					</li>
 				{/each}
 			</ul>

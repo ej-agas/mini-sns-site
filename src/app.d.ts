@@ -36,6 +36,7 @@ declare namespace App {
 	}
 
 	type UserProfile = {
+		id: string;
 		fullName: string;
 		firstName: string;
 		middleName: string;

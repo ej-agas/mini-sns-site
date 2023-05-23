@@ -12,6 +12,7 @@ async function MyProfile(): Promise<App.UserProfile> {
 	const data = await response.json();
 
 	return {
+		id: data.id,
 		fullName: data.full_name,
 		firstName: data.first_name,
 		middleName: data.middle_name,

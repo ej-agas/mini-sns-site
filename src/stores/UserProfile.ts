@@ -1,6 +1,9 @@
 import { writable } from 'svelte/store';
 
 const userProfile = writable<App.UserProfile>({
+	id: '',
+	userName: '',
+	picture: '',
 	fullName: '',
 	firstName: '',
 	middleName: '',
