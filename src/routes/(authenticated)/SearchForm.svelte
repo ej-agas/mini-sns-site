@@ -47,7 +47,7 @@
 					<li>
 						<a
 							class="!rounded-none justify-between hover:variant-soft focus:!variant-filled-primary outline-0"
-							href="/profiles/{user.userName ?? user.id}"
+							href="/users/{user.userName ?? user.id}"
 						>
 							<div class="grid grid-cols-[0fr,2fr] gap-2 p-4">
 								<div>
