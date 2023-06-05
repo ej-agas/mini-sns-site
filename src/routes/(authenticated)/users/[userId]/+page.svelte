@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AppBar, Avatar, modalStore } from '@skeletonlabs/skeleton';
+	import { Avatar } from '@skeletonlabs/skeleton';
 	import dayjs from 'dayjs';
 	import advancedFormat from 'dayjs/plugin/advancedFormat';
 	import timezone from 'dayjs/plugin/timezone';
@@ -8,7 +8,7 @@
 	import Spinner from '$lib/Spinner.svelte';
 	import { page } from '$app/stores';
 	import GetUserProfile from '$api/GetUserProfile';
-	import { error } from '@sveltejs/kit';
+	import GetUserPosts from '$api/GetUserPosts';
 
 	dayjs.extend(timezone);
 	dayjs.extend(advancedFormat);
@@ -19,9 +19,11 @@
 
 	let isError: boolean = false;
 
+	let userId: string = '';
+
 	onMount(async () => {
 		try {
-			userProfile = await GetUserProfile($page.params.userId);
+			await loadUserDetails(userId);
 		} catch (error) {
 			isLoading = false;
 			isError = true;
@@ -30,6 +32,16 @@
 
 		isLoading = false;
 	});
+
+	async function loadUserDetails(userId: string) {
+		userProfile = await GetUserProfile(userId);
+		posts = await GetUserPosts(userId);
+	}
+
+	$: {
+		userId = $page.params.userId;
+		loadUserDetails(userId);
+	}
 </script>
 
 {#if isLoading}

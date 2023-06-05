@@ -33,8 +33,6 @@ async function SearchUsers(query: string): Promise<App.UserProfile[]> {
 		});
 	});
 
-	console.log(users);
-
 	return users;
 }
 

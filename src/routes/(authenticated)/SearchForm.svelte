@@ -10,19 +10,12 @@
 		if (searchQuery.length < 2) {
 			return;
 		}
-		// Perform your API search request here
-		// You can use fetch or any library of your choice
-		// For simplicity, let's simulate an API call with a setTimeout
-
 		// Clear existing timeout if it exists
 		clearTimeout(debounceTimeout);
-
 		// Set a new timeout for 300 milliseconds
 		debounceTimeout = setTimeout(async () => {
 			// Make the API call with the searchQuery
 			searchResults = await SearchUsers(searchQuery);
-
-			console.log(searchResults);
 		}, 300);
 	}
 </script>
