@@ -9,11 +9,9 @@ async function GetUserPosts(userId: string): Promise<App.Post[]> {
 		}
 	});
 
-	const data = await response.json();
+	const res = await response.json();
 
-	console.log(data);
-
-	return [];
+	return res.data;
 }
 
 export default GetUserPosts;

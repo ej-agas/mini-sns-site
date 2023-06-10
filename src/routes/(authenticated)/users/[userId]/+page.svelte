@@ -35,7 +35,7 @@
 
 	async function loadUserDetails(userId: string) {
 		userProfile = await GetUserProfile(userId);
-		posts = await GetUserPosts(userId);
+		posts = await GetUserPosts(userProfile.id);
 	}
 
 	$: {
@@ -88,7 +88,7 @@
 
 	<div class="feed">
 		{#each posts as post}
-			<div class="p-4 m-4 bg-surface-600 rounded-xl grid" transition:fade={{ duration: 200 }}>
+			<div class="p-4 m-4 bg-surface-600 rounded-xl grid">
 				<div class="flex flex-col">
 					<Avatar src="https://i.pravatar.cc/?img=48" width="w-10" rounded="rounded-full" />
 					<div class="text-2xl text-white">Title: {post.title}</div>
