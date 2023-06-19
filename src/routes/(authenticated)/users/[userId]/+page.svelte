@@ -57,31 +57,24 @@
 		</div>
 	</div>
 {:else}
-	<div class="p-4 m-4 bg-surface-600 rounded-xl grid grid-cols-1 sm:grid-cols-2 gap-4">
+	<div class="p-4 m-4 bg-surface-600 rounded-xl">
 		<div class="rounded-xl card p-4 grid justify-items-center">
 			<Avatar src="https://i.pravatar.cc/?img=48" width="w-32" rounded="rounded" />
 			<h1>{userProfile.fullName}</h1>
-			<h3>{userProfile.bio}</h3>
-		</div>
-		<div class="rounded-xl card p-4">
-			<div class="grid grid-cols-1">
-				<h4>First Name: {userProfile.firstName}</h4>
-				<h4>Middle Name: {userProfile.middleName}</h4>
-				<h4>Last Name: {userProfile.lastName}</h4>
-				<h4>Email: {userProfile.email}</h4>
-				<h4>Join Date: {dayjs(userProfile.joinDate).format('MMMM DD, YYYY h:mm A z')}</h4>
-				<h4>
-					Is Verified: <span
-						class={'chip ' +
-							(userProfile.isVerified ? 'variant-filled-success' : 'variant-chip-warning')}
-						>{userProfile.isVerified ? 'Verified' : 'Unverified'}</span
-					>
-				</h4>
-				{#if userProfile.isVerified}
-					<h4>
-						Verified Date: {dayjs(userProfile.verifiedDate).format('MMMM DD, YYYY h:mm A z')}
-					</h4>
-				{/if}
+			<h3>Foo Bar Bazs</h3>
+			<div class="grid grid-cols-3">
+				<div class="text-center">
+					<h3 class="text-md text-white-500">42</h3>
+					<p class="text-sm text-white-500">Followers</p>
+				</div>
+				<div class="text-center px-2">
+					<h3 class="text-md text-white-500">345</h3>
+					<p class="text-sm text-white-500">Following</p>
+				</div>
+				<div class="text-center">
+					<h3 class="text-md text-white-500">1203</h3>
+					<p class="text-sm text-white-500">Posts</p>
+				</div>
 			</div>
 		</div>
 	</div>
