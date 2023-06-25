@@ -4,16 +4,25 @@
 	import { Avatar } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
 	import userProfile from '$stores/UserProfile';
+	import { goto } from '$app/navigation';
 
 	onMount(async () => {
 		$userProfile = await MyProfile();
 	});
+
+	function logout(): void {
+		localStorage.removeItem('token');
+		goto('/');
+	}
 </script>
 
 <div class="sidebar-left hidden lg:block">
 	<div class="p-4 m-8 bg-surface-600 rounded-xl grid justify-items-center">
 		<Avatar src="https://i.pravatar.cc/?img=48" width="w-32" rounded="rounded-full" />
-		<h3 class="text-md text-primary-500 py-4">{$userProfile.fullName}</h3>
+		<button class="text-md text-primary-500 py-4" on:click={() => goto('/profile')}>
+			<h3 class="no-underline">{$userProfile.fullName}</h3>
+		</button>
+
 		<div class="grid grid-cols-3">
 			<div class="text-center">
 				<h3 class="text-md text-primary-500">42</h3>
@@ -48,6 +57,10 @@
 		>
 			Profile
 		</a>
+		<button
+			class="btn text-center rounded-md text-2xl font-bold py-3 mt-4 bg-surface-500 text-primary-500"
+			on:click={logout}>Logout</button
+		>
 	</div>
 	<div class="p-4 m-8 bg-surface-600 rounded-xl grid justify-items-stretch">
 		<button class="text-center bg-primary-500 rounded-md text-surface-500 text-2xl font-bold py-3">

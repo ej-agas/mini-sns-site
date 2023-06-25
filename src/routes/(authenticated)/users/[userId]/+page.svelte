@@ -62,7 +62,7 @@
 			<Avatar src="https://i.pravatar.cc/?img=48" width="w-32" rounded="rounded" />
 			<h1>{userProfile.fullName}</h1>
 			<h3>Foo Bar Bazs</h3>
-			<div class="grid grid-cols-3">
+			<div class="grid grid-cols-4">
 				<div class="text-center">
 					<h3 class="text-md text-white-500">42</h3>
 					<p class="text-sm text-white-500">Followers</p>
@@ -75,7 +75,11 @@
 					<h3 class="text-md text-white-500">1203</h3>
 					<p class="text-sm text-white-500">Posts</p>
 				</div>
+				<div class="text-center">
+					<span class="badge variant-filled-primary">Follows You</span>
+				</div>
 			</div>
+			<button type="button" class="btn btn-lg variant-filled mt-2">Follow</button>
 		</div>
 	</div>
 
