@@ -1,6 +1,6 @@
 import APIBaseURL from './APIBaseURL';
 
-async function MyProfile(): Promise<App.UserProfile> {
+async function MyProfile(): Promise<App.MyProfile> {
 	const response = await fetch(APIBaseURL() + '/api/v1/my-profile', {
 		method: 'GET',
 		headers: {
@@ -23,7 +23,10 @@ async function MyProfile(): Promise<App.UserProfile> {
 		verifiedDate: data.verified_date,
 		joinDate: data.join_date,
 		userName: data.username,
-		picture: data.picture
+		picture: data.picture,
+		postsCount: data.posts_count,
+		followingCount: data.following_count,
+		followersCount: data.followers_count
 	};
 }
 

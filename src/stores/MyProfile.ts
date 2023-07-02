@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 
-const userProfile = writable<App.UserProfile>({
+const myProfileStore = writable<App.MyProfile>({
 	id: '',
 	userName: '',
 	picture: '',
@@ -12,7 +12,10 @@ const userProfile = writable<App.UserProfile>({
 	email: '',
 	isVerified: false,
 	verifiedDate: '',
-	joinDate: ''
+	joinDate: '',
+	followersCount: 0,
+	followingCount: 0,
+	postsCount: 0
 });
 
-export default userProfile;
+export default myProfileStore;

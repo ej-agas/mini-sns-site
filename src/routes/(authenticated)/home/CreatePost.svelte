@@ -3,6 +3,8 @@
 	import CreatePost from '$api/CreatePost';
 	import feed from '$stores/FeedStore';
 	import Feed from '$api/Feed';
+	import myProfileStore from '$stores/MyProfile';
+	import MyProfile from '$api/MyProfile';
 
 	let postForm: App.PostForm = {
 		title: '',
@@ -59,6 +61,7 @@
 		}
 
 		$feed = await Feed();
+		$myProfileStore = await MyProfile();
 	}
 </script>
 

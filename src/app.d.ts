@@ -48,6 +48,28 @@ declare namespace App {
 		joinDate: string,
 		userName: string;
 		picture: string;
+		followersCount: number;
+		followingCount: number;
+		postsCount: number;
+		isFollowing: boolean;
+	}
+
+	type MyProfile = {
+		id: string;
+		fullName: string;
+		firstName: string;
+		middleName: string;
+		lastName: string;
+		bio: string;
+		email: string;
+		isVerified: boolean;
+		verifiedDate: string;
+		joinDate: string,
+		userName: string;
+		picture: string;
+		followersCount: number;
+		followingCount: number;
+		postsCount: number;
 	}
 
 	type UserProfileForm = {

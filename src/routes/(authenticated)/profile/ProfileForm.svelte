@@ -1,5 +1,5 @@
 <script lang="ts">
-	import userProfile from '$stores/UserProfile';
+	import myProfileStore from '$stores/MyProfile';
 	import { superForm } from 'sveltekit-superforms/client';
 	import UpdateMyProfile from '../../../api/UpdateMyProfile';
 
@@ -42,7 +42,7 @@
 		}
 	});
 
-	$form = $userProfile;
+	$form = $myProfileStore;
 
 	async function handleSubmit() {
 		await UpdateMyProfile({

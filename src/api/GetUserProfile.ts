@@ -23,7 +23,11 @@ async function GetUserProfile(userId: string): Promise<App.UserProfile> {
 		verifiedDate: data.verified_date,
 		joinDate: data.join_date,
 		userName: data.username,
-		picture: data.picture
+		picture: data.picture,
+		followingCount: data.following_count,
+		followersCount: data.followers_count,
+		postsCount: data.posts_count,
+		isFollowing: data.is_following
 	};
 }
 

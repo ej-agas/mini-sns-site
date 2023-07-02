@@ -3,11 +3,11 @@
 	import MyProfile from '$api/MyProfile';
 	import { Avatar } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
-	import userProfile from '$stores/UserProfile';
+	import myProfileStore from '$stores/MyProfile';
 	import { goto } from '$app/navigation';
 
 	onMount(async () => {
-		$userProfile = await MyProfile();
+		$myProfileStore = await MyProfile();
 	});
 
 	function logout(): void {
@@ -20,20 +20,20 @@
 	<div class="p-4 m-8 bg-surface-600 rounded-xl grid justify-items-center">
 		<Avatar src="https://i.pravatar.cc/?img=48" width="w-32" rounded="rounded-full" />
 		<button class="text-md text-primary-500 py-4" on:click={() => goto('/profile')}>
-			<h3 class="no-underline">{$userProfile.fullName}</h3>
+			<h3 class="no-underline">{$myProfileStore.fullName}</h3>
 		</button>
 
 		<div class="grid grid-cols-3">
 			<div class="text-center">
-				<h3 class="text-md text-primary-500">42</h3>
+				<h3 class="text-md text-primary-500">{$myProfileStore.followersCount}</h3>
 				<p class="text-sm text-primary-500">Followers</p>
 			</div>
 			<div class="text-center px-2">
-				<h3 class="text-md text-primary-500">345</h3>
+				<h3 class="text-md text-primary-500">{$myProfileStore.followingCount}</h3>
 				<p class="text-sm text-primary-500">Following</p>
 			</div>
 			<div class="text-center">
-				<h3 class="text-md text-primary-500">1203</h3>
+				<h3 class="text-md text-primary-500">{$myProfileStore.postsCount}</h3>
 				<p class="text-sm text-primary-500">Posts</p>
 			</div>
 		</div>
