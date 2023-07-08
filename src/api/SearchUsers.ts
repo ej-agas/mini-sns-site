@@ -29,7 +29,11 @@ async function SearchUsers(query: string): Promise<App.UserProfile[]> {
 			email: user.email,
 			isVerified: user.is_verified,
 			verifiedDate: user.verified_date,
-			joinDate: user.join_date
+			joinDate: user.join_date,
+			followersCount: user.followers_count,
+			followingCount: user.following_count,
+			postsCount: user.posts_count,
+			isFollowing: user.is_following
 		});
 	});
 

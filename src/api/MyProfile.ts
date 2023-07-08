@@ -10,7 +10,7 @@ async function MyProfile(): Promise<App.MyProfile> {
 	});
 
 	const data = await response.json();
-
+	console.log(data);
 	return {
 		id: data.id,
 		fullName: data.full_name,

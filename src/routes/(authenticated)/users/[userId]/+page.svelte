@@ -3,6 +3,7 @@
 	import dayjs from 'dayjs';
 	import advancedFormat from 'dayjs/plugin/advancedFormat';
 	import timezone from 'dayjs/plugin/timezone';
+	import relativeTime from 'dayjs/plugin/relativeTime';
 	import { onMount } from 'svelte';
 	import Spinner from '$lib/Spinner.svelte';
 	import { page } from '$app/stores';
@@ -12,9 +13,12 @@
 	import UnfollowUser from '$api/UnfollowUser';
 	import myProfileStore from '$stores/MyProfile';
 	import MyProfile from '$api/MyProfile';
+	import { fade } from 'svelte/transition';
+	import UserProfile from './UserProfile.svelte';
 
 	dayjs.extend(timezone);
 	dayjs.extend(advancedFormat);
+	dayjs.extend(relativeTime);
 
 	let isLoading: boolean = true;
 	let posts: App.Post[] = [];
@@ -78,50 +82,5 @@
 		</div>
 	</div>
 {:else}
-	<div class="p-4 m-4 bg-surface-600 rounded-xl">
-		<div class="rounded-xl card p-4 grid justify-items-center">
-			<Avatar src="https://i.pravatar.cc/?img=48" width="w-32" rounded="rounded" />
-			<h1>{userProfile.fullName}</h1>
-			<h3>{userProfile.bio}</h3>
-			<div class="grid grid-cols-4">
-				<div class="text-center">
-					<h3 class="text-md text-white-500">{userProfile.followersCount}</h3>
-					<p class="text-sm text-white-500">Followers</p>
-				</div>
-				<div class="text-center px-2">
-					<h3 class="text-md text-white-500">{userProfile.followingCount}</h3>
-					<p class="text-sm text-white-500">Following</p>
-				</div>
-				<div class="text-center">
-					<h3 class="text-md text-white-500">{userProfile.postsCount}</h3>
-					<p class="text-sm text-white-500">Posts</p>
-				</div>
-				<div class="text-center">
-					<span class="badge variant-filled-primary">Follows You</span>
-				</div>
-			</div>
-			<button
-				type="button"
-				class="btn btn-lg variant-filled mt-2"
-				on:click={userProfile.isFollowing ? unFollow : follow}
-				>{userProfile.isFollowing ? 'Unfollow' : 'Follow'}</button
-			>
-		</div>
-	</div>
-
-	<div class="feed">
-		{#each posts as post}
-			<div class="p-4 m-4 bg-surface-600 rounded-xl grid">
-				<div class="flex flex-col">
-					<Avatar src="https://i.pravatar.cc/?img=48" width="w-10" rounded="rounded-full" />
-					<div class="text-2xl text-white">Title: {post.title}</div>
-					<div class="text-xl text-white">Body: {post.body}</div>
-					<div class="text-xl">User ID: {post.userId}</div>
-					<div class="text-md text-white justify-items-end">
-						Created At: {dayjs(post.createdAt).format('MMM D, YYYY h:mm:ss a')}
-					</div>
-				</div>
-			</div>
-		{/each}
-	</div>
+	<UserProfile {userProfile} {userId} {posts} />
 {/if}

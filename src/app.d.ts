@@ -90,5 +90,12 @@ declare namespace App {
 		createdAt: Date;
 		updatedAt: Date;
 		userId: string;
+		user: {
+			firstName: string;
+			middleName: string;
+			lastName: string;
+			picture: string;
+			username: string;
+		}
 	}
 }
