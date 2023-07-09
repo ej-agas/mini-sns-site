@@ -34,6 +34,4 @@
 			<LoginForm />
 		</div>
 	</div>
-	<!-- ---- / ---- -->
-	<svelte:fragment slot="footer">Footer</svelte:fragment>
 </AppShell>

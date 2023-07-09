@@ -7,16 +7,16 @@
 	import Spinner from '$lib/Spinner.svelte';
 	import { page } from '$app/stores';
 	import GetUserProfile from '$api/GetUserProfile';
-	import UserProfile from './UserProfile.svelte';
-	import UserFeed from './UserFeed.svelte';
-	import GetUserPosts from '$api/GetUserPosts';
+	import UserProfile from '../UserProfile.svelte';
+	import GetUserPost from '$api/GetUserPost';
+	import UserPost from '../UserPost.svelte';
 
 	dayjs.extend(timezone);
 	dayjs.extend(advancedFormat);
 	dayjs.extend(relativeTime);
 
 	let isLoading: boolean = true;
-	let posts: App.FeedPost[] = [];
+	let post: App.FeedPost;
 	let userProfile: App.UserProfile;
 	let isError: boolean = false;
 	let userId: string = '';
@@ -35,7 +35,7 @@
 
 	async function loadUserDetails(userId: string) {
 		userProfile = await GetUserProfile(userId);
-		posts = await GetUserPosts(userProfile.id);
+		post = await GetUserPost($page.params.postId);
 	}
 
 	$: {
@@ -58,5 +58,5 @@
 	</div>
 {:else}
 	<UserProfile {userProfile} {userId} />
-	<UserFeed {posts} {userProfile} />
+	<UserPost {post} {userProfile} />
 {/if}

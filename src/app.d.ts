@@ -83,7 +83,7 @@ declare namespace App {
 		isLoggedIn: boolean;
 	}
 
-	type Post = {
+	type FeedPost = {
 		id: string;
 		title: string
 		body: string;
@@ -97,5 +97,14 @@ declare namespace App {
 			picture: string;
 			username: string;
 		}
+	}
+
+	type Post = {
+		id: string;
+		title: string
+		body: string;
+		createdAt: Date;
+		updatedAt: Date;
+		userId: string;
 	}
 }

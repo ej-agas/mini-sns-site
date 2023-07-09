@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
 
-const feed = writable<App.Post[]>([]);
+const feed = writable<App.FeedPost[]>([]);
 
 export default feed;

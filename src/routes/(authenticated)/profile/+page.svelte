@@ -23,7 +23,7 @@
 	}
 
 	let isLoading: boolean = true;
-	let posts: App.Post[] = [];
+	let posts: App.FeedPost[] = [];
 
 	onMount(async () => {
 		posts = await Posts();

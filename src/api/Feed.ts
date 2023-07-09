@@ -1,6 +1,6 @@
 import APIBaseURL from './APIBaseURL';
 
-async function Feed(page: number): Promise<App.Post[]> {
+async function Feed(page: number): Promise<App.FeedPost[]> {
 	const response = await fetch(APIBaseURL() + `/api/v1/feed?page=${page}`, {
 		method: 'GET',
 		headers: {
